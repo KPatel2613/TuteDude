@@ -1,0 +1,358 @@
+/* =============================================
+   ASTROLOGY APP — style.css
+   Theme: Cosmic / Mystical / Deep Indigo + Gold
+   ============================================= */
+
+/* ---------- CSS Variables ---------- */
+:root {
+  --bg-deep:       #0a0414;
+  --bg-mid:        #120826;
+  --accent-gold:   #FFD700;
+  --accent-amber:  #FFB347;
+  --accent-rose:   #FF6B9D;
+  --text-light:    #f0e8ff;
+  --text-muted:    #b8a9d4;
+  --card-bg:       rgba(255,255,255,0.06);
+  --card-border:   rgba(255,215,0,0.18);
+  --radius:        16px;
+  --font-display:  'Cinzel Decorative', serif;
+  --font-body:     'Raleway', sans-serif;
+  --transition:    0.35s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------- Global ---------- */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  background: var(--bg-deep);
+  color: var(--text-light);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ---------- Starfield Canvas ---------- */
+#stars {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ---------- Container ---------- */
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 32px 20px 48px;
+  min-height: 100vh;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  animation: fadeUp 0.55s var(--transition) both;
+}
+.section.hide { display: none; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Logo ---------- */
+.logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.logo-img {
+  width: 110px;
+  filter: drop-shadow(0 0 18px rgba(255,215,0,0.55));
+  animation: floatLogo 4s ease-in-out infinite;
+}
+@keyframes floatLogo {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+/* ---------- App Title ---------- */
+.app-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  text-align: center;
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-amber), var(--accent-rose));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+  text-shadow: none;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+}
+
+/* ---------- Card ---------- */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,215,0,0.08);
+  margin-bottom: 20px;
+  transition: box-shadow var(--transition);
+}
+.card:hover {
+  box-shadow: 0 12px 40px rgba(255,215,0,0.12), inset 0 1px 0 rgba(255,215,0,0.12);
+}
+
+/* ---------- Form ---------- */
+.form-group { margin-bottom: 20px; }
+
+label {
+  display: block;
+  color: var(--accent-gold);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+input[type="text"] {
+  width: 100%;
+  height: 52px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,215,0,0.25);
+  border-radius: 10px;
+  padding: 0 16px;
+  color: var(--text-light);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+input[type="text"]::placeholder {
+  color: rgba(255,255,255,0.3);
+}
+input[type="text"]:focus {
+  border-color: var(--accent-gold);
+  background: rgba(255,215,0,0.06);
+  box-shadow: 0 0 0 3px rgba(255,215,0,0.12);
+}
+
+/* ---------- Error ---------- */
+.error {
+  display: block;
+  margin-top: 8px;
+  color: #FF6B9D;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+.hide { display: none !important; }
+
+/* ---------- Shake Animation ---------- */
+.shake {
+  animation: shake 0.4s ease;
+}
+@keyframes shake {
+  0%,100%{ transform:translateX(0); }
+  20%    { transform:translateX(-8px); }
+  40%    { transform:translateX(8px); }
+  60%    { transform:translateX(-5px); }
+  80%    { transform:translateX(5px); }
+}
+
+/* ---------- Button ---------- */
+.btn {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #a3650a, #FFD700, #FFB347);
+  color: #1a0a00;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  box-shadow: 0 4px 20px rgba(255,215,0,0.3);
+}
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.22));
+  pointer-events: none;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(255,215,0,0.45);
+  filter: brightness(1.08);
+}
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(255,215,0,0.2);
+}
+.btn-icon {
+  font-size: 1.1rem;
+  animation: spinStar 3s linear infinite;
+}
+@keyframes spinStar {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.btn-back {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text-light);
+  box-shadow: none;
+  font-size: 0.88rem;
+  margin-top: 8px;
+}
+.btn-back:hover {
+  background: rgba(255,255,255,0.14);
+  box-shadow: 0 4px 14px rgba(255,255,255,0.08);
+}
+
+/* ---------- Result Header ---------- */
+.result-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.result-name {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 7vw, 3rem);
+  background: linear-gradient(135deg, var(--accent-gold), var(--accent-rose));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.06em;
+}
+.result-sub {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-top: 4px;
+}
+
+/* ---------- Zodiac Ring ---------- */
+.zodiac-ring {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+.zodiac-img {
+  width: 160px;
+  filter: drop-shadow(0 0 24px rgba(255,215,0,0.4));
+}
+.spin {
+  animation: rotateSlow 20s linear infinite;
+}
+@keyframes rotateSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ---------- Section Title ---------- */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--accent-gold);
+  letter-spacing: 0.06em;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(255,215,0,0.15);
+  padding-bottom: 10px;
+}
+
+/* ---------- Summary Text ---------- */
+.summary-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-light);
+}
+
+/* ---------- Blessing Card ---------- */
+.blessing-card p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #e8d8ff;
+  font-style: italic;
+}
+
+/* ---------- Info Card ---------- */
+.info-card p {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.info-card p:last-of-type { margin-bottom: 0; }
+
+/* ---------- Goddess Image ---------- */
+.goddess-img-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.goddess-img {
+  width: 90px;
+  filter: drop-shadow(0 0 12px rgba(255,179,71,0.5));
+}
+
+/* ---------- Ganesh Image ---------- */
+.ganesh-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.ganesh-img {
+  width: 130px;
+  filter: drop-shadow(0 0 16px rgba(255,215,0,0.45));
+  animation: floatLogo 5s ease-in-out infinite;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb {
+  background: rgba(255,215,0,0.25);
+  border-radius: 4px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 400px) {
+  .container { padding: 24px 14px 40px; }
+  .app-title  { font-size: 1.4rem; }
+  .card       { padding: 20px 16px; }
+}

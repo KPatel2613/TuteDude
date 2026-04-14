@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Astrology App – Know Your Name</title>
+<link rel="stylesheet" href="style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Starfield Canvas -->
+<canvas id="stars"></canvas>
+
+<main class="container">
+
+  <!-- SECTION 1: Input -->
+  <div id="sec-1" class="section active">
+    <div class="logo-wrap">
+      <img src="https://png2.cleanpng.com/sh/d236fa1b26503d95ed67c5618a4336b5/L0KzQYm3VMA2N5V1iZH0aYP2gLBuTfdidpZ4gNM2c3jshrK0jB0ue6pyetH1LXjsfrX8igNuNZhmhuJqdHmwRbLqVfQ4QWhqeqQ9Y0mxRoaAUMI0PWU2TaQ7OUG4QoO6WcY0Ol91htk=/kisspng-ganesha-shiva-om-symbol-hinduism-ganpati-5ac5d797eb24c9.6570235415229152239632.png" alt="Ganesha" class="logo-img">
+    </div>
+    <h1 class="app-title">Astrology App</h1>
+    <p class="subtitle">Discover the cosmic meaning behind your name</p>
+
+    <div class="card">
+      <div class="form-group">
+        <label for="input">Enter Your First Name</label>
+        <input type="text" id="input" placeholder="e.g. Arjun" autocomplete="off" />
+        <span class="error hide" id="error">⚠ Please enter a valid name (3–15 letters only)</span>
+      </div>
+      <button class="btn" onclick="showResult()">
+        <span class="btn-text">Reveal My Destiny</span>
+        <span class="btn-icon">✦</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- SECTION 2: Result -->
+  <div id="sec-2" class="section hide">
+    <div class="result-header">
+      <h1 id="top-name" class="result-name"></h1>
+      <p class="result-sub">Your Cosmic Profile</p>
+    </div>
+
+    <div class="zodiac-ring">
+      <img src="https://png2.cleanpng.com/sh/b21e454593086918742fdecabc205adb/L0KzQYm3UsEzN6VofZH0aYP2gLBuTfF0fKN0hNHwaXPkfH76ifdvNZl0itH8Y3BzdX7DjBRqaZQyeeV9cnBvf7jCTfFvcZ5mhJ99dYLxhLLpjPUuPZI9SdMBNnK6R4GCVsEvPmE7SaI6OUW0RYKBVMQ3OWk8TKoCNj7zfri=/kisspng-astrological-sign-horoscope-zodiac-astrology-animal-turntable-5a81a66b770961.6061019515184461874876.png" alt="Zodiac" class="zodiac-img spin">
+    </div>
+
+    <div class="card result-card">
+      <h2 class="section-title">✦ Summary</h2>
+      <p id="summary" class="summary-text"></p>
+    </div>
+
+    <div class="blessing-card card">
+      <h2 class="section-title">🙏 Best Wishes</h2>
+      <p>May God bless you with a flourishing career and a wonderful life partner.</p>
+    </div>
+
+    <div class="info-card card">
+      <h2 class="section-title">📿 Information</h2>
+      <div class="goddess-img-wrap">
+        <img src="https://png2.cleanpng.com/sh/2ba325a56caf208f7a0b2f6510b02c2b/L0KzQYm3UsExN5xxiZH0aYP2gLBuTfxqdJp5gJ9tcnH6ebBuTfRmdZDzRdt1bIX2hMPolPlwdl5sh95tZX6wd7FrhPV0e15uhN5Ac4T1ccXwjB4uPZI8fqMDYUW4Roa8WMcvOGIATas6NUW0RYKBUsc5QGM2S6c8Nj7zfri=/kisspng-lilith-drawing-demon-illustration-golden-goddess-illustration-5a7f18a5565587.0195915515182788213536.png" alt="Goddess" class="goddess-img">
+      </div>
+      <p>किसी मनुष्य की भौतिक पहचान उसका नाम ही है। जिसके दूवारा उसके आंतरिक गुणों और व्यवहार आदि का पता चलता है। हमारे हिन्दू धर्म में नाम रखते समय ग्रहों आदि की चाल का विशेष ख्याल रखा जाता है, ताकि जातक का नाम उसके स्वभाव व भविष्य के अनुकूल हो।</p>
+      <p>नाम न सिर्फ हमारे व्यक्तित्व के विषय में जानकारी देता है बल्कि यह हमारे भविष्य का भी आइना होता है।</p>
+      <div class="ganesh-wrap">
+        <img src="https://png2.cleanpng.com/sh/4e155c5a44b8227aeaf571030e8bf7ab/L0KzQYm3V8A0N6dri5H0aYP2gLBuTfdidpZ4gNM2bHHug7n0ib1pcZ9pjdt8bT3sfrXwgb13caRthuc2NXK2crboVvM2OpY5S6I3OUO2Q4S3VccyPWQ1Tqc8Mkm1Q4SCVb5xdpg=/kisspng-ganesha-lakshmi-hinduism-india-vishnu-5b3bea6c52e430.9333305715306532923395.png" alt="Ganesha Lakshmi" class="ganesh-img">
+      </div>
+    </div>
+
+    <button class="btn btn-back" onclick="back()">← Go Back</button>
+  </div>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+// Starfield
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+let stars = [];
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function createStars() {
+  stars = [];
+  for (let i = 0; i < 160; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 0.3,
+      alpha: Math.random(),
+      speed: Math.random() * 0.005 + 0.002
+    });
+  }
+}
+
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    s.alpha += s.speed;
+    if (s.alpha > 1 || s.alpha < 0) s.speed *= -1;
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,230,150,${s.alpha})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+
+resizeCanvas(); createStars(); drawStars();
+window.addEventListener('resize', () => { resizeCanvas(); createStars(); });
+
+// App Logic
+const sec1 = document.getElementById('sec-1');
+const sec2 = document.getElementById('sec-2');
+const errorEl = document.getElementById('error');
+const inputEl = document.getElementById('input');
+const topName = document.getElementById('top-name');
+const summaryEl = document.getElementById('summary');
+const pattern = /^[A-Za-z]{3,15}$/;
+
+const data = [
+  {chart:"a", details:"नाम वाले लोग काफी मेहनती और धैर्यवान होते हैं। इन्हें ज्यादातर आकर्षक दिखने वाले लोग पसंद आते हैं और ये खुद भी आकर्षक दिखना पसंद करते हैं। इनमें किसी भी परिस्थि‍ति के अनुसार खुद को ढालने की गजब की क्षमता होती है।"},
+  {chart:"b", details:"नाम वाले लोग जिंदगी में नए-नए रास्ते तलाशने में यकीन रखते हैं। यह लोग कुछ-कुछ संकोची लेकिन बहुत संवेदनशील होते हैं, और दोस्तों के साथ आसानी से घुल-मिल नहीं पाते।"},
+  {chart:"c", details:"नाम वाले लोग सफलता के मामले में काफी खुशकिस्मत होते हैं। शक्ल-ओ-सूरत से यह काफी खूबसूरत और आकर्षक होते हैं, और हमेशा किस्मत साथ लेकर चलते हैं।"},
+  {chart:"d", details:"नाम वाले लोगों का भाग्य हंसता-खि‍लखि‍लाता हुआ होता है। सफलता के मामले में यह लोग काफी खुशकि‍स्मत होते हैं, और हर काम में इन्हें सफलता मिलती है।"},
+  {chart:"e", details:"नाम वाले लोग हंसी-मजाक को अपनी आदतों में शुमार करते हैं। यह लोग कुछ मुंहफट-सा मिजाज लिए हुए होते हैं, और इन्हें टोकने वाले लोग बिल्कुल पसंद नहीं होते।"},
+  {chart:"f", details:"नाम वाले लोग जिम्मेदारी के मामले में बिल्कुल फिट होते हैं। यह लोग जीवन में हर चीज का संतुलन बनाकर चलते हैं, और पैसे खर्च करने के मामले में काफी सोच-विचारकर चलते हैं।"},
+  {chart:"g", details:"नाम वाले लोग किसी की मदद करने के लिए हमेशा तैयार होते हैं, और खुद को हर परिस्थिति में ढाल लेने की क्षमता इनमें होती है।"},
+  {chart:"h", details:"नाम के लोग राजसी स्वभाव के होते हैं, और मस्तमौला, बेफिक्र जिंदगी जीना पसंद करते हैं। इनके लिए पैसा बहुत महत्वपूर्ण होता है।"},
+  {chart:"i", details:"नाम के लोग स्वभाव से काफी संवेदनशील होते हैं, और अक्सर लोगों के आकर्षण का केंद्र होते हैं।"},
+  {chart:"j", details:"नाम के लोग स्वभाव से चंचल होते हैं। दिखने में तो यह खूबसूरत होते ही हैं, साथ ही अच्छे गुणों का होना इनके व्यक्तित्व की विशेषता होती है।"},
+  {chart:"k", details:"नाम वाले लोगों को परफेक्शनिस्ट कहा जाए तो कोई बड़ी बात नहीं होगी, क्योंकि इन्हें हर काम परफेक्शन के साथ ही पसंद होता है।"},
+  {chart:"l", details:"नाम के लोग काफी चार्मिंग या यूं कहें कि आकर्षक होते हैं। ख्वाबों की दुनिया में जीना और छोटी-छोटी चीजों में खुश रहना इनका खास गुण होता है।"},
+  {chart:"m", details:"नाम से शुरू होनेवाले लोग बातों को मन में दबाने वाली प्रवृत्ति के होते हैं। अपनी फैमिली को यह बेहद प्यार करते हैं।"},
+  {chart:"n", details:"नाम वाले लोग खुले विचार के होते हैं, और महत्वाकांक्षाओं से भरे हुए भी होते हैं। इनका व्यक्तित्व बेहद आकर्षक होता है।"},
+  {chart:"o", details:"नाम वाले लोगों का दिमाग काफी तेज होता है। यह लोग बोलने में कम और करने में ज्यादा विश्वास करते हैं।"},
+  {chart:"p", details:"नाम के लोग खुले विचार के होते हैं, और हर काम को परफेक्शन के साथ करना इन्हें पसंद होता है।"},
+  {chart:"q", details:"नाम वाले लोग सच्चे और ईमानदार होते हैं। इनमें कलात्मकता का भी भंडार होता है।"},
+  {chart:"r", details:"नाम वाले लोग सामाजिक जिंदगी जीना पसंद नहीं करते, लेकिन अपने परिवार को बहुत अहमियत देते हैं।"},
+  {chart:"s", details:"नाम वाले लोग काफी मेहनती होते हैं। यह बातों के इतने धनी होते हैं कि सामने वाला इनकी ओर आकर्षित हो ही जाता है।"},
+  {chart:"t", details:"नाम वाले लोग आकर्षक दिखने वाले और खुशमिजाज टाइप के लोग होते हैं। प्यार के मामले में यह काफी रोमांटिक किस्म के होते हैं।"},
+  {chart:"u", details:"नाम वाले लोगों का दिल जीतने में माहिर होते हैं। दूसरों के लिए वक्त निकालना इन्हें अच्छी तरह से आता है।"},
+  {chart:"v", details:"नाम के व्यक्ति स्वभाव से थोड़े आरामी किस्म के होते हैं। दिल के साफ होते हैं, और वही काम करना पसंद करते हैं, जो इनके मन को भा जाए।"},
+  {chart:"w", details:"नाम के लोग एक निश्चित ढर्रे पर चलते हैं। हर मामले में सफलता इनकी मुट्ठी तक पहुंच ही जाती है।"},
+  {chart:"x", details:"नाम के लोग रहस्यमय और गहरे स्वभाव के होते हैं। इनकी बुद्धिमत्ता और तीक्ष्ण दृष्टि इन्हें भीड़ से अलग बनाती है।"},
+  {chart:"y", details:"नाम वाले लोग बेहद समझदार और विवेकशील होते हैं। दूसरों की मदद करने में यह हमेशा आगे रहते हैं।"},
+  {chart:"z", details:"नाम के लोग जोशीले और ऊर्जावान होते हैं। जीवन को पूरी उमंग के साथ जीना इनका स्वभाव है।"}
+];
+
+function showResult() {
+  const val = inputEl.value.trim();
+  if (!pattern.test(val)) {
+    errorEl.classList.remove('hide');
+    inputEl.classList.add('shake');
+    setTimeout(() => inputEl.classList.remove('shake'), 500);
+    return;
+  }
+  errorEl.classList.add('hide');
+
+  const firstChar = val[0].toLowerCase();
+  const match = data.find(d => d.chart === firstChar) || {details: "आपका नाम अद्वितीय है। ब्रह्मांड आपके लिए विशेष योजनाएं रखता है।"};
+
+  topName.textContent = val.charAt(0).toUpperCase() + val.slice(1).toLowerCase();
+  summaryEl.textContent = val.charAt(0).toUpperCase() + " " + match.details;
+
+  sec1.classList.remove('active');
+  sec1.classList.add('hide');
+  sec2.classList.remove('hide');
+  setTimeout(() => sec2.classList.add('active'), 50);
+
+  // Confetti burst
+  setTimeout(() => {
+    confetti({ particleCount: 80, spread: 70, origin: { y: 0.4 }, colors: ['#FFD700','#FF6B6B','#FFF','#FFB347'] });
+  }, 300);
+}
+
+function back() {
+  sec2.classList.remove('active');
+  sec2.classList.add('hide');
+  sec1.classList.remove('hide');
+  setTimeout(() => sec1.classList.add('active'), 50);
+  inputEl.value = '';
+}
+
+inputEl.addEventListener('keydown', e => { if (e.key === 'Enter') showResult(); });
+</script>
+</body>
+</html>

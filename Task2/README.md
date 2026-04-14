@@ -1,4 +1,4 @@
-# Laundry Wallah / Laundry Mart — TD1: HTML
+# Laundry Wallah
 
 ## Project Overview
 A responsive HTML webpage for **Laundry Wallah / Laundry Mart**, a premier laundry service.
